@@ -1,0 +1,26 @@
+[project]
+name = "boxmot-tracking-poc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "filterpy>=1.4.5",
+    "ftfy>=6.3.1",
+    "gdown>=5.2.0",
+    "lap>=0.5.12",
+    "loguru>=0.7.3",
+    "opencv-python>=4.11.0.86",
+    "pandas>=2.2.3",
+    "pillow>=11.1.0",
+    "pip>=25.0",
+    "poetry>=2.0.1",
+    "pyyaml>=6.0.2",
+    "regex>=2024.11.6",
+    "scikit-learn>=1.6.1",
+    "torch>=2.6.0",
+    "torchvision>=0.21.0",
+]
+
+[tool.poetry.dependencies]
+poetry_project = {path="boxmot/", develop=true}
