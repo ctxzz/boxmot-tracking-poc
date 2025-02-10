@@ -28,7 +28,9 @@ def main():
 
     # 出力ディレクトリ
     output_dir = os.path.join(project_dir, "runs", "track")
-    output_name = "exp"
+    
+    # 🔹 拡張子を除いた動画ファイル名を取得
+    output_name = os.path.splitext(VIDEO_FILE)[0]
 
     # トラッキングの設定 (自由に変更可能)
     tracking_method = "bytetrack"  # 例: "bytetrack", "deepocsort", "strongsort" など
@@ -47,7 +49,7 @@ def main():
         "--project", output_dir,
         "--name", output_name,
         "--exist-ok",
-        "--classes", "0",  # 追跡するクラス (0: 人)
+        # "--classes", "0",  # 追跡するクラス (0: 人)
     ]
 
     print(f"[INFO] Running BoxMOT with command:\n{' '.join(command)}")

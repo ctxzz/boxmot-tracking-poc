@@ -56,5 +56,42 @@ yolo_model = "yolov8n.pt"  # 例: "yolov8s.pt", "yolov8m.pt"
 classes = "0"  # 例: "0 2 3"（人、自転車、車）
 ```
 
+## トラッキング ID の修正
+
+### 1️⃣ 修正用の CSV ファイルの作成
+特定の ID を統合したい場合、`fix_trackID/` ディレクトリに CSV ファイルを作成する。
+
+CSV ファイルの命名規則: `{動画名}.csv`
+```bash
+fix_trackID/video.csv
+```
+
+CSV の内容は、統合する ID を行単位で記述する。
+```csv
+1, 4, 59, 200
+2, 50, 66, 299
+```
+上記の例では、`1, 4, 59, 200` を ID `1` に統合し、`2, 50, 66, 299` を ID `2` に統合する。
+
+### 2️⃣ 修正スクリプトの実行
+```bash
+uv run fix_tracking.py
+```
+これにより、
+- `runs/track/exp/labels/` 内の `.txt` ファイルが修正される
+- 統合後の ID を反映したトラッキングデータが新しい `_fixed.txt` ファイルとして保存される
+- CSV に含まれない ID は `_fixed.txt` に追加されない
+
+### 3️⃣ 修正後の動画の生成
+`fix_tracking.py` の実行後、修正後のトラッキングデータをもとに動画を作成する。
+```bash
+uv run fix_tracking.py
+```
+
+修正後の動画は `runs/track/fixed_videos/` に保存される。
+
 ## 出力
-トラッキング結果は `runs/track/exp/` に MOT 形式 (`.txt`) で保存される。
+
+- **トラッキング結果**: `runs/track/exp/labels/` に `.txt` 形式で保存
+- **修正後のトラッキングデータ**: `_fixed.txt` 付きのファイル
+- **修正後の動画**: `runs/track/fixed_videos/` に `.mp4` 形式で保存

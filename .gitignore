@@ -1,5 +1,9 @@
 *.mov
 *.mp4
 *.pt
+*.txt
+*.csv
+.DS_Store
+
 
 runs/*
